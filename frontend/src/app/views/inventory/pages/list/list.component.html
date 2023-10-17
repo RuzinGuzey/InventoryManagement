@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          Envanter Listesi
+          <a
+            routerLink="/inventory/new"
+            class="btn btn-primary shadow"
+            style="display: flex; float: right"
+          >
+            Yeni Ekle
+          </a>
+        </div>
+        <div class="card-body">
+          <nz-table #dt [nzData]="dataSet" class="table-responsive">
+            <thead>
+              <tr>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Seri Numarası</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of dt.data">
+                <td>{{ data.marka }}</td>
+                <td>{{ data.model }}</td>
+                <td>{{ data.seriNo }}</td>
+                <td>{{ data.entryDate }}</td>
+                <td>
+                  <a (click)="edit(data.id)">Düzenle</a>
+                  <nz-divider nzType="vertical"></nz-divider>
+                  <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Sil</a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

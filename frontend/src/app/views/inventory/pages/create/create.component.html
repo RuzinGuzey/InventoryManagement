@@ -1,0 +1,167 @@
+<form nz-form [formGroup]="form" autocomplete="off" (ngSubmit)="submit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">
+            {{ inventoryId ? "Envanter Düzenle" : "Yeni Envanter" }}
+          </div>
+          <div class="card-body">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="marka"
+                >Marka</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Marka gereklidir."
+              >
+                <input nz-input formControlName="marka" id="marka" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="model"
+                >Model</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Model gereklidir."
+              >
+                <input nz-input formControlName="model" id="model" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="seriNo"
+                >Seri numarası</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Seri numarası gereklidir."
+              >
+                <input nz-input formControlName="seriNo" id="seriNo" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="inventoryGroup"
+                >Envanter Grubu</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Envanter grubu gereklidir."
+              >
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Envanter grubu seçiniz"
+                  formControlName="inventoryGroupId"
+                  nzPlacement="bottomLeft"
+                >
+                  <ng-container *ngFor="let inventoryGroup of inventoryGroups">
+                    <nz-option
+                      [nzLabel]="inventoryGroup.name"
+                      [nzValue]="inventoryGroup.id"
+                    ></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="entryDate"
+                >Giriş Tarihi</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Giriş tarihi gereklidir."
+              >
+                <nz-date-picker
+                  formControlName="entryDate"
+                  id="entryDate"
+                  style="width: 100%"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="guaranteeStart"
+                >Garanti Başlangıç Tarihi</nz-form-label
+              >
+              <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-date-picker
+                  formControlName="guaranteeStart"
+                  id="guaranteeStart"
+                  style="width: 100%"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="guaranteeEnd"
+                >Garanti Bitiş Tarihi</nz-form-label
+              >
+              <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-date-picker
+                  formControlName="guaranteeEnd"
+                  id="guaranteeEnd"
+                  style="width: 100%"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="price"
+                >Fiyat</nz-form-label
+              >
+              <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-input-number
+                  formControlName="price"
+                  id="price"
+                  [nzPrecision]="2"
+                  style="width: 100%"
+                />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="whereAbout"
+                >Lokasyon</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Lokasyon gereklidir."
+              >
+                <input nz-input formControlName="whereAbout" id="whereAbout" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="card-footer text-end">
+            <button
+              type="submit"
+              *ngIf="!inventoryId"
+              nz-button
+              nzType="primary"
+            >
+              Kaydet
+            </button>
+            <button
+              type="submit"
+              *ngIf="inventoryId"
+              nz-button
+              nzType="primary"
+            >
+              Güncelle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

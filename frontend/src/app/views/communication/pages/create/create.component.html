@@ -1,0 +1,93 @@
+<form nz-form [formGroup]="form" autocomplete="off" (ngSubmit)="submit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">Yeni İletişim Hizmeti</div>
+          <div class="card-body">
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="serviceType"
+                >Servis Tipi</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Servis Tipi Tanımlayın."
+              >
+                <input
+                  nz-input
+                  formControlName="serviceType"
+                  id="serviceType"
+                />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="employeeId"
+                >Çalışan</nz-form-label
+              >
+              <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip=".">
+                <input nz-input formControlName="employeeId" id="employeeId" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="serviceNumber"
+                >Servis NUmarası</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Servis numarası gereklidir."
+              >
+                <input
+                  nz-input
+                  formControlName="serviceNumber"
+                  id="serviceNumber"
+                />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="inventoryGroup"
+                >Seri numarası</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Envanter grubu gereklidir."
+              >
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Envanter grubu seçiniz"
+                  formControlName="inventoryGroupId"
+                  nzPlacement="bottomLeft"
+                >
+                  <ng-container *ngFor="let inventoryGroup of inventoryGroups">
+                    <nz-option
+                      [nzLabel]="inventoryGroup.name"
+                      [nzValue]="inventoryGroup.id"
+                    ></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="card-footer">
+            <button type="submit" nz-button nzType="primary">Kaydet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          İletişim Hizmetleri
+          <a
+            routerLink="/communications/new"
+            class="btn btn-primary shadow"
+            style="display: flex; float: right"
+          >
+            Yeni Ekle
+          </a>
+        </div>
+        <div class="card-body">
+          <nz-table #dt [nzData]="dataSet" class="table-responsive">
+            <thead>
+              <tr>
+                <th>Servis Tipi</th>
+                <th>Çalışan</th>
+                <th>Servisin Numarası</th>
+                <th>Ücretlendirme</th>
+                <th>Operatör</th>
+                <th>Protokol (kullanımda)</th>
+                <th>Ücret</th>
+                <th>Başlangıç Tarihi (kullanımdaki protokol)</th>
+                <th>Bitiş Tarihi (kullanımdaki protokol)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of dt.data">
+                <td>{{ data.serviceType }}</td>
+                <td>{{ data.employeeId }}</td>
+                <td>{{ data.serviceNumber }}</td>
+                <td>{{ data.rate }}</td>
+                <td>{{ data.operatorId }}</td>
+                <td>{{ data.protocolName }}</td>
+                <td>{{ data.price }}</td>
+                <td>{{ data.startTime }}</td>
+                <td>{{ data.endTime }}</td>
+                <td>
+                  <a (click)="edit(data.id)">Düzenle</a>
+                  <nz-divider nzType="vertical"></nz-divider>
+                  <a (click)="delete(data.id)">Sil</a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
